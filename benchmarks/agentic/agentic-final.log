@@ -27,3 +27,259 @@ ok  plugin_dir   miss clear error (sys.exit)
 
 selftest: all instruments valid
 running 108 cells, 6 at a time
+  [1/108] tmpl-fe-datepicker / ponytail / haiku #1  LOC=82 tok=290896 cost=$0.0667872 time=38.9s correct=1
+  [2/108] tmpl-fe-datepicker / ponytail / haiku #2  LOC=24 tok=231642 cost=$0.0585933 time=39.0s correct=1
+  [3/108] tmpl-fe-datepicker / ponytail / haiku #0  LOC=43 tok=286282 cost=$0.0649111 time=39.1s correct=1
+  [4/108] tmpl-fe-datepicker / scalpel / haiku #2  LOC=24 tok=105220 cost=$0.03367875 time=19.4s correct=1
+  [5/108] tmpl-fe-datepicker / baseline / haiku #2  LOC=217 tok=405253 cost=$0.09380120000000002 time=63.0s correct=1
+  [6/108] tmpl-fe-datepicker / scalpel / haiku #1  LOC=21 tok=335648 cost=$0.06729315 time=34.0s correct=1
+  [7/108] tmpl-fe-datepicker / scalpel / haiku #0  LOC=24 tok=257808 cost=$0.0592008 time=36.5s correct=1
+  [8/108] tmpl-fe-datepicker / baseline / haiku #1  LOC=368 tok=601569 cost=$0.13566029999999998 time=79.0s correct=1
+  [9/108] tmpl-fe-colorpicker / ponytail / haiku #0  LOC=24 tok=221321 cost=$0.048749 time=29.4s correct=1
+  [10/108] tmpl-fe-colorpicker / baseline / haiku #0  LOC=352 tok=371614 cost=$0.08893365000000002 time=50.1s correct=1
+  [11/108] tmpl-fe-colorpicker / baseline / haiku #1  LOC=119 tok=447222 cost=$0.0891859 time=59.4s correct=1
+  [12/108] tmpl-fe-colorpicker / ponytail / haiku #1  LOC=55 tok=454130 cost=$0.08583575000000002 time=47.9s correct=1
+  [13/108] tmpl-fe-colorpicker / baseline / haiku #2  LOC=207 tok=448061 cost=$0.09014505000000003 time=52.7s correct=1
+  [14/108] tmpl-fe-colorpicker / ponytail / haiku #2  LOC=24 tok=216736 cost=$0.04801595 time=28.6s correct=1
+  [15/108] tmpl-fe-colorpicker / scalpel / haiku #0  LOC=25 tok=213333 cost=$0.046777650000000004 time=27.7s correct=1
+  [16/108] tmpl-fe-datepicker / baseline / haiku #0  LOC=427 tok=1238023 cost=$0.24445445 time=146.8s correct=1
+  [17/108] tmpl-fe-colorpicker / scalpel / haiku #1  LOC=25 tok=187924 cost=$0.043161649999999996 time=22.4s correct=1
+  [18/108] tmpl-fe-colorpicker / scalpel / haiku #2  LOC=25 tok=170369 cost=$0.0458739 time=22.5s correct=1
+  [19/108] tmpl-fe-command / baseline / haiku #1  LOC=230 tok=338056 cost=$0.08093919999999999 time=49.0s correct=1
+  [20/108] tmpl-fe-command / baseline / haiku #0  LOC=276 tok=529808 cost=$0.10745435 time=63.4s correct=1
+  [21/108] tmpl-fe-command / ponytail / haiku #2  LOC=213 tok=289907 cost=$0.07386134999999999 time=44.3s correct=1
+  [22/108] tmpl-fe-command / ponytail / haiku #1  LOC=194 tok=537923 cost=$0.10987129999999999 time=63.4s correct=1
+  [23/108] tmpl-fe-command / scalpel / haiku #0  LOC=207 tok=220748 cost=$0.06117745 time=35.0s correct=1
+  [24/108] tmpl-fe-command / ponytail / haiku #0  LOC=421 tok=625667 cost=$0.15187394999999998 time=87.8s correct=1
+  [25/108] tmpl-fe-command / scalpel / haiku #1  LOC=217 tok=263574 cost=$0.0725691 time=47.0s correct=1
+  [26/108] tmpl-fe-dropzone / baseline / haiku #0  LOC=272 tok=156416 cost=$0.0520997 time=34.5s correct=1
+  [27/108] tmpl-fe-command / baseline / haiku #2  LOC=406 tok=1030982 cost=$0.21060625 time=112.2s correct=1
+  [28/108] tmpl-fe-command / scalpel / haiku #2  LOC=187 tok=593851 cost=$0.11684665 time=68.1s correct=1
+  [29/108] tmpl-fe-dropzone / ponytail / haiku #0  LOC=167 tok=195258 cost=$0.05288015 time=29.8s correct=1
+  [30/108] tmpl-fe-dropzone / baseline / haiku #1  LOC=381 tok=214690 cost=$0.06682145 time=48.6s correct=1
+  [31/108] tmpl-fe-dropzone / baseline / haiku #2  LOC=303 tok=239583 cost=$0.06607775 time=41.4s correct=1
+  [32/108] tmpl-fe-dropzone / ponytail / haiku #2  LOC=227 tok=255289 cost=$0.0653044 time=37.7s correct=1
+  [33/108] tmpl-fe-dropzone / ponytail / haiku #1  LOC=300 tok=378598 cost=$0.08519394999999999 time=51.4s correct=1
+  [34/108] tmpl-fe-dropzone / scalpel / haiku #0  LOC=106 tok=187690 cost=$0.04826245 time=34.3s correct=1
+  [35/108] tmpl-fe-dropzone / scalpel / haiku #2  LOC=136 tok=189914 cost=$0.05216459999999999 time=33.4s correct=1
+  [36/108] tmpl-fe-dropzone / scalpel / haiku #1  LOC=209 tok=142004 cost=$0.05180505 time=36.3s correct=1
+  [37/108] tmpl-fe-wizard / ponytail / haiku #0  LOC=362 tok=260053 cost=$0.07317715000000001 time=43.5s correct=1
+  [38/108] tmpl-fe-wizard / ponytail / haiku #1  LOC=312 tok=170177 cost=$0.056825 time=35.8s correct=1
+  [39/108] tmpl-fe-wizard / baseline / haiku #2  LOC=441 tok=294094 cost=$0.10073404999999999 time=73.3s correct=1
+  [40/108] tmpl-fe-wizard / ponytail / haiku #2  LOC=500 tok=306375 cost=$0.0956328 time=59.8s correct=1
+  [41/108] tmpl-fe-wizard / scalpel / haiku #0  LOC=446 tok=254227 cost=$0.07769404999999999 time=48.5s correct=1
+  [42/108] tmpl-fe-wizard / baseline / haiku #0  LOC=419 tok=493337 cost=$0.17988805 time=127.1s correct=1
+  [43/108] tmpl-fe-wizard / scalpel / haiku #1  LOC=608 tok=239829 cost=$0.08128935 time=52.0s correct=1
+  [44/108] tmpl-fe-rating / baseline / haiku #0  LOC=247 tok=213287 cost=$0.058837249999999994 time=37.6s correct=1
+  [45/108] tmpl-fe-wizard / scalpel / haiku #2  LOC=440 tok=207177 cost=$0.06895035000000001 time=41.3s correct=1
+  [46/108] tmpl-fe-rating / baseline / haiku #1  LOC=110 tok=223775 cost=$0.050160949999999996 time=26.7s correct=1
+  [47/108] tmpl-fe-rating / ponytail / haiku #0  LOC=78 tok=248131 cost=$0.0538069 time=34.8s correct=1
+  [48/108] tmpl-fe-wizard / baseline / haiku #1  LOC=1472 tok=774270 cost=$0.2537646 time=155.1s correct=1
+  [49/108] tmpl-fe-rating / baseline / haiku #2  LOC=239 tok=351237 cost=$0.0773933 time=43.0s correct=1
+  [50/108] tmpl-fe-rating / ponytail / haiku #1  LOC=140 tok=284325 cost=$0.0644207 time=35.8s correct=1
+  [51/108] tmpl-fe-rating / scalpel / haiku #0  LOC=71 tok=164524 cost=$0.0429749 time=23.2s correct=1
+  [52/108] tmpl-fe-rating / ponytail / haiku #2  LOC=150 tok=250490 cost=$0.059425399999999996 time=35.1s correct=1
+  [53/108] tmpl-be-duplicate / baseline / haiku #0  LOC=24 tok=190553 cost=$0.05165165 time=27.4s correct=1
+  [54/108] tmpl-fe-rating / scalpel / haiku #1  LOC=104 tok=190281 cost=$0.05191394999999999 time=36.2s correct=1
+  [55/108] tmpl-be-duplicate / baseline / haiku #2  LOC=24 tok=186505 cost=$0.0496216 time=25.0s correct=1
+  [56/108] tmpl-be-duplicate / ponytail / haiku #0  LOC=23 tok=179304 cost=$0.055087050000000005 time=26.0s correct=1
+  [57/108] tmpl-be-duplicate / baseline / haiku #1  LOC=24 tok=238065 cost=$0.05744225000000001 time=30.6s correct=1
+  [58/108] tmpl-fe-rating / scalpel / haiku #2  LOC=75 tok=341403 cost=$0.07330579999999999 time=47.0s correct=1
+  [59/108] tmpl-be-duplicate / ponytail / haiku #1  LOC=21 tok=254807 cost=$0.060566100000000005 time=28.5s correct=1
+  [60/108] tmpl-be-duplicate / ponytail / haiku #2  LOC=21 tok=202471 cost=$0.05618900000000001 time=28.5s correct=1
+  [61/108] tmpl-be-duplicate / scalpel / haiku #0  LOC=23 tok=222416 cost=$0.05543409999999999 time=30.4s correct=1
+  [62/108] tmpl-be-duplicate / scalpel / haiku #1  LOC=24 tok=200294 cost=$0.0534853 time=28.6s correct=1
+  [63/108] tmpl-be-duplicate / scalpel / haiku #2  LOC=24 tok=198290 cost=$0.052802550000000004 time=26.9s correct=1
+  [64/108] tmpl-be-search / ponytail / haiku #2  LOC=44 tok=191488 cost=$0.0471912 time=22.7s correct=1
+  [65/108] tmpl-be-search / baseline / haiku #1  LOC=44 tok=270957 cost=$0.07036025 time=39.0s correct=1
+  [66/108] tmpl-be-search / baseline / haiku #2  LOC=44 tok=234689 cost=$0.06432445 time=35.9s correct=1
+  [67/108] tmpl-be-search / ponytail / haiku #1  LOC=42 tok=225816 cost=$0.05651505 time=37.6s correct=1
+  [68/108] tmpl-be-search / ponytail / haiku #0  LOC=40 tok=287148 cost=$0.07661950000000001 time=40.5s correct=1
+  [69/108] tmpl-be-search / baseline / haiku #0  LOC=45 tok=453449 cost=$0.11219860000000002 time=64.8s correct=1
+  [70/108] tmpl-be-search / scalpel / haiku #0  LOC=44 tok=297397 cost=$0.07143764999999999 time=41.4s correct=1
+  [71/108] tmpl-be-count / baseline / haiku #0  LOC=22 tok=223804 cost=$0.05657 time=27.2s correct=1
+  [72/108] tmpl-be-search / scalpel / haiku #1  LOC=48 tok=201259 cost=$0.0592036 time=34.4s correct=1
+  [73/108] tmpl-be-search / scalpel / haiku #2  LOC=49 tok=277433 cost=$0.0746514 time=38.5s correct=1
+  [74/108] tmpl-be-count / baseline / haiku #2  LOC=17 tok=196832 cost=$0.05545735 time=27.4s correct=1
+  [75/108] tmpl-be-count / baseline / haiku #1  LOC=17 tok=191054 cost=$0.0522 time=33.4s correct=1
+  [76/108] tmpl-be-count / ponytail / haiku #0  LOC=17 tok=136731 cost=$0.04439885 time=23.4s correct=1
+  [77/108] tmpl-be-count / scalpel / haiku #0  LOC=21 tok=133735 cost=$0.039720450000000004 time=19.6s correct=1
+  [78/108] tmpl-be-count / ponytail / haiku #2  LOC=22 tok=197761 cost=$0.050296850000000004 time=26.0s correct=1
+  [79/108] tmpl-be-count / scalpel / haiku #2  LOC=17 tok=134224 cost=$0.044372350000000005 time=24.9s correct=1
+  [80/108] tmpl-be-count / ponytail / haiku #1  LOC=17 tok=284040 cost=$0.06418785 time=33.6s correct=1
+  [81/108] tmpl-be-count / scalpel / haiku #1  LOC=23 tok=390643 cost=$0.08370645000000002 time=44.6s correct=1
+  [82/108] tmpl-be-archive / baseline / haiku #0  LOC=78 tok=492489 cost=$0.1101362 time=58.2s correct=1
+  [83/108] tmpl-be-archive / ponytail / haiku #1  LOC=69 tok=485417 cost=$0.10596935 time=52.3s correct=1
+  [84/108] tmpl-be-archive / baseline / haiku #1  LOC=252 tok=603223 cost=$0.1326919 time=68.0s correct=1
+  [85/108] tmpl-be-archive / ponytail / haiku #0  LOC=144 tok=783969 cost=$0.16119639999999996 time=91.1s correct=1
+  [86/108] tmpl-be-archive / ponytail / haiku #2  LOC=202 tok=690780 cost=$0.14796915000000002 time=77.4s correct=1
+  [87/108] tmpl-be-archive / baseline / haiku #2  LOC=158 tok=1243692 cost=$0.23244839999999997 time=114.2s correct=1
+  [88/108] tmpl-be-archive / scalpel / haiku #2  LOC=63 tok=545427 cost=$0.12239605 time=68.9s correct=1
+  [89/108] tmpl-be-bulkdelete / baseline / haiku #0  LOC=30 tok=354862 cost=$0.0790723 time=43.5s correct=1
+  [90/108] tmpl-be-bulkdelete / baseline / haiku #1  LOC=26 tok=402768 cost=$0.09053394999999999 time=45.4s correct=1
+  [91/108] tmpl-be-bulkdelete / baseline / haiku #2  LOC=33 tok=363075 cost=$0.08404674999999999 time=44.7s correct=1
+  [92/108] tmpl-be-archive / scalpel / haiku #0  LOC=173 tok=1094310 cost=$0.20859684999999997 time=107.2s correct=1
+  [93/108] tmpl-be-archive / scalpel / haiku #1  LOC=155 tok=1267177 cost=$0.22448254999999992 time=104.7s correct=1
+  [94/108] tmpl-be-bulkdelete / ponytail / haiku #1  LOC=25 tok=317234 cost=$0.0684999 time=36.3s correct=1
+  [95/108] tmpl-be-bulkdelete / ponytail / haiku #0  LOC=30 tok=268105 cost=$0.06945115 time=41.6s correct=1
+  [96/108] tmpl-be-bulkdelete / ponytail / haiku #2  LOC=23 tok=333947 cost=$0.07834475 time=41.8s correct=1
+  [97/108] tmpl-be-bulkdelete / scalpel / haiku #0  LOC=22 tok=318928 cost=$0.07175985000000001 time=37.1s correct=1
+  [98/108] tmpl-be-bulkdelete / scalpel / haiku #2  LOC=32 tok=277434 cost=$0.0727345 time=48.5s correct=1
+  [99/108] tmpl-be-csv / baseline / haiku #1  LOC=38 tok=409851 cost=$0.08999565 time=47.5s correct=1
+  [100/108] tmpl-be-bulkdelete / scalpel / haiku #1  LOC=22 tok=723428 cost=$0.13919165000000003 time=73.7s correct=1
+  [101/108] tmpl-be-csv / ponytail / haiku #0  LOC=35 tok=361991 cost=$0.07858575000000001 time=38.8s correct=1
+  [102/108] tmpl-be-csv / baseline / haiku #2  LOC=35 tok=421055 cost=$0.09190785000000001 time=49.9s correct=1
+  [103/108] tmpl-be-csv / ponytail / haiku #1  LOC=32 tok=290613 cost=$0.06677604999999999 time=33.5s correct=1
+  [104/108] tmpl-be-csv / baseline / haiku #0  LOC=43 tok=759925 cost=$0.15153155000000004 time=78.3s correct=1
+  [105/108] tmpl-be-csv / ponytail / haiku #2  LOC=29 tok=332389 cost=$0.07278015 time=35.7s correct=1
+  [106/108] tmpl-be-csv / scalpel / haiku #0  LOC=41 tok=257918 cost=$0.06163885 time=37.8s correct=1
+  [107/108] tmpl-be-csv / scalpel / haiku #1  LOC=34 tok=515283 cost=$0.10263514999999998 time=54.9s correct=1
+  [108/108] tmpl-be-csv / scalpel / haiku #2  LOC=41 tok=534306 cost=$0.11316159999999999 time=56.6s correct=1
+
+=== tmpl-be-archive  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     158    779801  $0.1584    80.1
+  ponytail             1.0      1.0     144    653389  $0.1384    73.6
+  scalpel              1.0      1.0     155    968971  $0.1852    93.6
+
+=== tmpl-be-bulkdelete  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0      30    373568  $0.0846    44.5
+  ponytail             1.0      1.0      25    306429  $0.0721    39.9
+  scalpel              1.0      1.0      22    439930  $0.0946    53.1
+
+=== tmpl-be-count  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0      17    203897  $0.0547    29.3
+  ponytail             1.0      1.0      17    206177  $0.0530    27.7
+  scalpel              1.0      1.0      21    219534  $0.0559    29.7
+
+=== tmpl-be-csv  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0      38    530277  $0.1111    58.6
+  ponytail             1.0      1.0      32    328331  $0.0727    36.0
+  scalpel              1.0      1.0      41    435836  $0.0925    49.8
+
+=== tmpl-be-duplicate  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0      24    205041  $0.0529    27.7
+  ponytail             1.0      1.0      21    212194  $0.0573    27.7
+  scalpel              1.0      1.0      24    207000  $0.0539    28.6
+
+=== tmpl-be-search  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0      44    319698  $0.0823    46.6
+  ponytail             1.0      1.0      42    234817  $0.0601    33.6
+  scalpel              1.0      1.0      48    258696  $0.0684    38.1
+
+=== tmpl-fe-colorpicker  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     207    422299  $0.0894    54.1
+  ponytail             1.0      1.0      24    297396  $0.0609    35.3
+  scalpel              1.0      1.0      25    190542  $0.0453    24.2
+
+=== tmpl-fe-command  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     276    632949  $0.1330    74.9
+  ponytail             1.0      1.0     213    484499  $0.1119    65.2
+  scalpel              1.0      1.0     207    359391  $0.0835    50.0
+
+=== tmpl-fe-datepicker  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     368    748282  $0.1580    96.2
+  ponytail             1.0      1.0      43    269607  $0.0634    39.0
+  scalpel              1.0      1.0      24    232892  $0.0534    30.0
+
+=== tmpl-fe-dropzone  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     303    203563  $0.0617    41.5
+  ponytail             1.0      1.0     227    276382  $0.0678    39.6
+  scalpel              1.0      1.0     136    173203  $0.0507    34.7
+
+=== tmpl-fe-rating  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     239    262766  $0.0621    35.8
+  ponytail             1.0      1.0     140    260982  $0.0592    35.2
+  scalpel              1.0      1.0      75    232069  $0.0561    35.5
+
+=== tmpl-fe-wizard  (haiku, n=3) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  baseline             1.0      1.0     441    520567  $0.1781   118.5
+  ponytail             1.0      1.0     362    245535  $0.0752    46.4
+  scalpel              1.0      1.0     446    233744  $0.0760    47.3
+
+wrote /Users/piyushaneja/Desktop/skill/benchmarks/agentic/runs/20260703-184639/results.json + summary.json (108 cells)
+ok  todo-null    good correct=1 safe=1 axis=safe  survived null POST
+ok  todo-null    bad  correct=1 safe=0 axis=safe  crashed on null POST
+ok  safe-path    good correct=1 safe=1 axis=safe  ok
+ok  safe-path    bad  correct=1 safe=0 axis=safe  ok
+ok  critic-email good correct=1 safe=1 axis=safe  ok
+ok  critic-email bad  correct=1 safe=0 axis=safe  ok
+ok  rate-limit   good correct=1 safe=1 axis=safe  ok
+ok  rate-limit   bad  correct=1 safe=0 axis=safe  ok
+ok  sql-user     good correct=1 safe=1 axis=safe  ok
+ok  sql-user     bad  correct=1 safe=0 axis=safe  ok
+ok  auth-token   good correct=1 safe=1 axis=safe  ok
+ok  auth-token   bad  correct=1 safe=0 axis=safe  ok
+ok  csv-sum      good correct=1 safe=1 axis=safe  ok
+ok  csv-sum      bad  correct=1 safe=0 axis=safe  ok
+ok  cache        good correct=1 safe=1 axis=correct  ok (over-engineering measured by LOC/files)
+ok  cache        bad  correct=0 safe=0 axis=correct  ok (over-engineering measured by LOC/files)
+ok  reuse-slug   good correct=1 safe=1 axis=safe  reused project slugify
+ok  reuse-slug   bad  correct=1 safe=0 axis=safe  re-implemented slug (diverges on accents)
+ok  reuse-money  good correct=1 safe=1 axis=safe  reused format_money
+ok  reuse-money  bad  correct=1 safe=0 axis=safe  re-implemented formatting (no grouping)
+ok  trace-transfer good correct=1 safe=1 axis=safe  fixed shared _debit (withdraw guarded too)
+ok  trace-transfer bad  correct=1 safe=0 axis=safe  patched only transfer; withdraw still overdraws
+ok  trace-amount good correct=1 safe=1 axis=safe  fixed shared parse_amount (tax_due works too)
+ok  trace-amount bad  correct=1 safe=0 axis=safe  patched only invoice_total; tax_due still breaks on commas
+ok  plugin_dir   env  override honored
+ok  plugin_dir   miss clear error (sys.exit)
+
+selftest: all instruments valid
+running 14 cells, 6 at a time
+  [1/14] rate-limit / scalpel / haiku #1  LOC=18 tok=74371 cost=$0.0252249 time=11.6s correct=1
+  [2/14] critic-email / scalpel / haiku #1  LOC=5 tok=73872 cost=$0.0242614 time=11.9s correct=1
+  [3/14] critic-email / scalpel / haiku #0  LOC=7 tok=74129 cost=$0.0245906 time=16.9s correct=1
+  [4/14] safe-path / scalpel / haiku #0  LOC=7 tok=75347 cost=$0.028767900000000002 time=17.9s correct=1
+  [5/14] rate-limit / scalpel / haiku #0  LOC=16 tok=149150 cost=$0.03523845 time=18.9s correct=1
+  [6/14] safe-path / scalpel / haiku #1  LOC=11 tok=75743 cost=$0.029893749999999997 time=19.1s correct=1
+  [7/14] sql-user / scalpel / haiku #1  LOC=4 tok=74135 cost=$0.024378950000000003 time=10.9s correct=1
+  [8/14] auth-token / scalpel / haiku #1  LOC=17 tok=74930 cost=$0.026630550000000003 time=11.6s correct=1
+  [9/14] sql-user / scalpel / haiku #0  LOC=6 tok=73784 cost=$0.0235263 time=19.0s correct=1
+  [10/14] auth-token / scalpel / haiku #0  LOC=15 tok=74277 cost=$0.0247648 time=14.1s correct=1
+  [11/14] csv-sum / scalpel / haiku #0  LOC=12 tok=73310 cost=$0.022348450000000002 time=13.6s correct=1
+  [12/14] cache / scalpel / haiku #0  LOC=11 tok=73797 cost=$0.0235475 time=15.4s correct=1
+  [13/14] cache / scalpel / haiku #1  LOC=11 tok=99291 cost=$0.028931150000000003 time=15.4s correct=1
+  [14/14] csv-sum / scalpel / haiku #1  LOC=14 tok=198957 cost=$0.0401007 time=29.8s correct=1
+
+=== auth-token  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0    16.0     74604  $0.0257    12.8
+
+=== cache  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0    11.0     86544  $0.0262    15.4
+
+=== critic-email  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0     6.0     74000  $0.0244    14.4
+
+=== csv-sum  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0    13.0    136134  $0.0312    21.7
+
+=== rate-limit  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0    17.0    111760  $0.0302    15.2
+
+=== safe-path  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0     9.0     75545  $0.0293    18.5
+
+=== sql-user  (haiku, n=2) ===
+  arm               wrote%  correct     LOC   tot_tok    $/run  time_s
+  scalpel              1.0      1.0     5.0     73960  $0.0240    15.0
+
+wrote /Users/piyushaneja/Desktop/skill/benchmarks/agentic/runs/20260703-190222/results.json + summary.json (14 cells)
+FINAL-AGENTIC-DONE

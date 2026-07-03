@@ -1,0 +1,870 @@
+{
+  "judge": "claude-sonnet-4-6",
+  "rubric": "You are a senior engineer reviewing a code submission for OVER-ENGINEERING ONLY. Ignore correctness, style, performance, and security. Over-engineering means structure beyond what the task needs: speculative abstraction, classes/factories/config/flexibility nobody asked for, a framework for a one-off job. Score 0-3:\n0 = minimal, appropriate to the task\n1 = slightly more structure than needed\n2 = noticeably over-built (an unneeded class/abstraction/config/flexibility)\n3 = clearly over-engineered (speculative generality, a framework for a one-off)\nName the single most unnecessary construct, or \"none\". Respond with ONLY this JSON: {\"over_engineering\": <0-3 int>, \"why\": \"<one line>\", \"cite\": \"<construct or none>\"}",
+  "scores": [
+    {
+      "task": "tmpl-be-archive",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "Two separate CRUD functions `archive_item` and `unarchive_item` are created instead of a single `set_archived(item, value)` function, and two separate API endpoints `/archive` and `/unarchive` are added instead of a single PATCH endpoint toggling the boolean field.",
+      "cite": "archive_item/unarchive_item as separate functions + two POST endpoints instead of one PATCH"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "Two separate POST endpoints (`/archive` and `/unarchive`) instead of a single PATCH/PUT endpoint accepting `is_archived` boolean, plus mirrored frontend components (ArchiveItem/UnarchiveItem) that are nearly identical\u2014slightly more structure than needed for a simple boolean toggle.",
+      "cite": "ArchiveItem/UnarchiveItem as separate components + separate archive/unarchive route endpoints"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "Two separate POST endpoints (`/archive` and `/unarchive`) were created instead of a single PATCH endpoint toggling `is_archived`, and a `useMemo` hook was added just to compute a two-word label string.",
+      "cite": "Two dedicated route handlers `archive_item` and `unarchive_item` instead of a single toggle/update endpoint"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "Two separate PATCH endpoints (`/archive` and `/unarchive`) are created instead of a single PATCH endpoint accepting a boolean payload, doubling the route/handler boilerplate for a trivial boolean toggle.",
+      "cite": "Two separate route handlers `archive_item` and `unarchive_item` in `backend/app/api/routes/items.py`"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "Two separate POST endpoints (`/archive` and `/unarchive`) instead of a single PATCH with a boolean field, but this is a minor style choice rather than a framework.",
+      "cite": "@router.post('/{id}/archive') and @router.post('/{id}/unarchive') as separate endpoints"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "Two separate POST endpoints (`/archive` and `/unarchive`) instead of a single PATCH endpoint toggling `is_archived`, plus a dedicated `ArchiveItem` frontend component with its own dialog/form for a simple boolean flip.",
+      "cite": "ArchiveItem component with Dialog/form + two separate backend endpoints (archive_item/unarchive_item)"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "Separate `archive_item` and `unarchive_item` CRUD functions that each do the same 3-line pattern (set bool, add, commit, refresh) could be a single `set_item_archived(item, archived: bool)` function, and two separate REST endpoints (`/archive`, `/unarchive`) could be one PATCH endpoint.",
+      "cite": "archive_item / unarchive_item as two separate functions + two separate endpoints"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "Two separate POST endpoints (`/{id}/archive` and `/{id}/unarchive`) instead of a single PATCH endpoint toggling `is_archived`, plus a dedicated `ArchiveItem` frontend component with its own `useForm` hook for what is a single boolean toggle.",
+      "cite": "Two separate archive/unarchive endpoints + ArchiveItem component with useForm"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "Two separate POST endpoints (`/archive` and `/unarchive`) are created instead of a single PATCH endpoint accepting `{is_archived: bool}`, which duplicates identical permission-checking and DB logic for a trivial boolean toggle.",
+      "cite": "archive_item and unarchive_item as separate endpoints in backend/app/api/routes/items.py"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `ItemsDelete` SQLModel class is a slightly unnecessary abstraction for a simple list of UUIDs; a plain `list[uuid.UUID]` body parameter would suffice for this one-off endpoint.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated SQLModel class `ItemsDelete` was created just to wrap a list of UUIDs for a single endpoint, when a simple inline `list[uuid.UUID]` body parameter would suffice.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `ItemsBulkDelete` SQLModel class was created just to hold a list of UUIDs, which is slightly more structure than needed for a simple request body.",
+      "cite": "class ItemsBulkDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `ItemsDelete` SQLModel class just to hold a list of UUIDs is slightly more structure than needed for a simple bulk-delete endpoint; a plain list in the request body or a query parameter would suffice.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `ItemsDelete` SQLModel class was created just to hold a list of UUIDs for a single endpoint, which is slightly more structure than needed for a simple request body.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `ItemsDelete` SQLModel class was created just to hold a list of UUIDs for a single endpoint, when a simple inline `list[uuid.UUID]` body parameter would suffice.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `ItemsDelete` SQLModel class is a minor unnecessary abstraction for a simple list of UUIDs that could just be a plain Pydantic model or inline type annotation.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `ItemsDelete` SQLModel class is a minor unnecessary abstraction for a simple list of UUIDs that could just be a plain Pydantic model or inline request body type.",
+      "cite": "class ItemsDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `ItemBulkDelete` SQLModel class was created just to hold a list of UUIDs for a single endpoint, when a simple inline `list[uuid.UUID]` body parameter would suffice.",
+      "cite": "class ItemBulkDelete(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A dedicated `ItemCount` SQLModel class was created just to return a single integer, when the endpoint could simply return `{'count': count}` or even a plain `int`.",
+      "cite": "class ItemCount(SQLModel): count: int"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The new `/count` endpoint uses `response_model=dict` instead of a typed Pydantic model, but the logic itself is a simple, appropriate addition; the slight over-engineering is the superuser branch that mirrors the existing list endpoint's logic rather than just always counting the current user's items.",
+      "cite": "response_model=dict"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `/count/total` endpoint is slightly more structure than needed for a one-liner count query that could be folded into the existing list endpoint or returned inline.",
+      "cite": "@router.get(\"/count/total\")"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A dedicated `Count` SQLModel class was created just to return a single integer from the new endpoint, when a plain `dict` or `int` response would suffice for a one-off count endpoint.",
+      "cite": "class Count(SQLModel): count: int"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `ItemCount` class inherits from `Message` just to add a `count` field, creating an unnecessary class hierarchy for a simple one-off endpoint response that could just return a plain dict or inline model.",
+      "cite": "class ItemCount(Message)"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `ItemCount` SQLModel class was created just to return a single integer field, when a plain dict or inline response model would suffice for this one-off endpoint.",
+      "cite": "class ItemCount(SQLModel)"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `export_items_csv` endpoint returns a `FileResponse` wrapping an `io.BytesIO` object, which is not how `FileResponse` is designed to work (it expects a file path), and the whole CSV generation uses `io.StringIO`/`io.BytesIO` intermediaries plus a `FileResponse` class import when a simple `StreamingResponse` with `io.StringIO` would suffice\u2014but more broadly, the endpoint itself is a straightforward one-off feature that doesn't warrant any extra abstraction.",
+      "cite": "FileResponse(io.BytesIO(output.getvalue().encode()), ...)"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "Using `iter([output.getvalue()])` to wrap a single string in a list for StreamingResponse is a minor unnecessary construct\u2014a plain string or bytes would suffice.",
+      "cite": "iter([output.getvalue()])"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "The duplicate_item endpoint is a straightforward POST handler that fetches, copies, and saves an item\u2014no unnecessary abstractions, classes, or flexibility added.",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `search_items` endpoint duplicates the superuser/non-superuser branching logic already present in `read_items`, rather than extracting a shared helper or adding a filter parameter to the existing endpoint.",
+      "cite": "Duplicated if/else superuser branching in `search_items` vs `read_items`"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The dedicated `/search/title` sub-path and separate endpoint function is slightly more structure than needed for a simple filter parameter on the existing list endpoint.",
+      "cite": "@router.get(\"/search/title\", response_model=ItemsPublic)"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "The search endpoint is a straightforward addition that mirrors the existing read_items pattern with an added filter parameter\u2014no unnecessary abstractions, classes, or flexibility beyond what the task requires.",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "The `ColorPicker` component manually reimplements hex\u2194RGB\u2194HSL color math (hexToRgb, rgbToHex, rgbToHsl, hslToRgb) and a full popover-based HSL slider UI from scratch, when the task was simply 'add a color picker component'\u2014a single `<input type='color'>` or a tiny third-party library would suffice.",
+      "cite": "hexToRgb/rgbToHex/rgbToHsl/hslToRgb functions plus full HSL slider UI in `frontend/src/components/ui/color-picker.tsx`"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `ColorPickerDemo` component was created just to showcase the color picker, adding unnecessary abstraction and a dedicated file for what is essentially a usage example that could be inline.",
+      "cite": "frontend/src/components/Common/ColorPickerDemo.tsx"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A dedicated `ColorPickerDemo` component with a full Card layout, three separate demo variants (default, compact, disabled), and a separate test file with 7 test cases is noticeably over-built for the task of adding a color picker component\u2014the demo wrapper and elaborate test suite add structure beyond what was asked for.",
+      "cite": "ColorPickerDemo component (frontend/src/components/Common/ColorPickerDemo.tsx)"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 0,
+      "why": "none",
+      "cite": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A dedicated `ColorPickerDemo` component and a separate `ColorPicker` UI primitive were created just to wrap a native `<input type='color'>` element with some Tailwind classes\u2014this is a one-liner that needed no abstraction layer.",
+      "cite": "ColorPicker component in `frontend/src/components/ui/color-picker.tsx` and `ColorPickerDemo` in `frontend/src/components/Common/ColorPickerDemo.tsx`"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `ColorPicker` component is a thin wrapper around a native `<input type='color'>` that adds only Tailwind classes\u2014a simple one-liner in JSX would suffice without a dedicated file and function.",
+      "cite": "ColorPicker function in frontend/src/components/ui/color-picker.tsx"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The ColorPicker component is a trivial wrapper around a native `<input type='color'>` with minimal styling, yet it uses `React.forwardRef` and the full shadcn/ui slot/data-slot pattern, adding unnecessary abstraction for what is essentially a one-liner.",
+      "cite": "React.forwardRef in ColorPicker"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `ColorPicker` component is a thin wrapper around a native `<input type='color'>` that adds only Tailwind classes\u2014a simple one-liner in JSX would suffice without a dedicated file and named export.",
+      "cite": "frontend/src/components/ui/color-picker.tsx"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `ColorPicker` component is a trivial wrapper around a native `<input type='color'>` with Tailwind classes\u2014no abstraction needed\u2014but the task is just 'add a color picker component', which this file does appropriately; the slight over-engineering is the `data-slot` attribute and full shadcn-style boilerplate pattern applied to what is essentially a one-liner input.",
+      "cite": "ColorPicker function component wrapping native input with shadcn-style data-slot/cn boilerplate"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "The `Command` interface with `id`, `label`, `description`, `icon`, `action`, and `keywords` fields, plus a `useCommandPalette` hook, plus calling `useAuth()` inside `useMemo` (a React rules violation), plus a separate `CommandPaletteProps` interface\u2014all for a simple searchable menu that could be a plain component with a hardcoded list.",
+      "cite": "interface Command { id, label, description, icon, action, keywords }"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `Command` interface with `id`, `title`, `description`, `icon`, `action`, and `keywords` fields is a speculative abstraction\u2014a plain array of objects would suffice for a one-off command palette with 6 hardcoded entries.",
+      "cite": "interface Command { id, title, description, icon, action, keywords }"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A full Context/Provider/hook architecture (CommandPaletteContext, CommandPaletteProvider, useCommandPaletteContext, useCommandPalette, useGlobalCommandPalette, RootComponent) plus a barrel export index.ts was built for what is essentially a modal with a text input and a list\u2014a single self-contained component would suffice.",
+      "cite": "CommandPaletteContext.tsx / CommandPaletteProvider + useCommandPaletteContext + useCommandPalette + useGlobalCommandPalette + RootComponent"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A dedicated `CommandPaletteContext` with a custom React context, provider, and hook is unnecessary abstraction for a simple boolean open/close state that could be local component state or a single useState in the parent.",
+      "cite": "CommandPaletteContext.tsx (CommandPaletteProvider/useCommandPalette)"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `commands.ts` module with a `Command` interface, category field, `filterCommands` function, and exported array is unnecessary abstraction for a simple static list of 4 navigation links that could be defined inline in the component.",
+      "cite": "frontend/src/lib/commands.ts"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A dedicated `CommandPaletteContext` with its own Provider and `useCommandPalette` hook is unnecessary abstraction for a simple boolean open/close state that could just be local state in the component or a single useState in the layout.",
+      "cite": "CommandPaletteProvider / useCommandPalette hook in frontend/src/hooks/useCommandPalette.tsx"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The hardcoded `COMMANDS` list with speculative entries like 'pending-items' and 'pending-users' (with query params) and an unused `icon` field on the `Command` interface suggests building a mini-framework for a feature that could have been a simple navigation list.",
+      "cite": "COMMANDS constant with speculative/unused fields (icon, keywords, pending-* entries with query params)"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `Command` interface with `id`, `title`, `description`, `icon`, and `action` fields is an unnecessary abstraction for a simple hardcoded list of 4-5 navigation actions.",
+      "cite": "interface Command { id: string; title: string; description: string; icon: React.ReactNode; action: () => void }"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `Command` interface with `id`, `label`, `description`, `category`, `icon`, and `action` fields, plus a separate `commands` array built inside the component, is unnecessary abstraction for a one-off palette with ~6 hardcoded items that could just be inline JSX.",
+      "cite": "interface Command { id, label, description, category, icon, action }"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A hand-rolled custom Popover component with its own context, position tracking, resize listeners, and click-outside detection was built from scratch instead of using the already-present Radix UI popover primitive (@radix-ui/react-tooltip, @radix-ui/react-dialog etc. are already in the project), and a full DATEPICKER.md documentation file plus a DatePickerExample.tsx demo component and Playwright test file were created for what is a simple UI widget addition.",
+      "cite": "frontend/src/components/ui/popover.tsx (custom Popover with PopoverContext, usePopover, position state, resize/click-outside effects)"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A full usage guide markdown doc, two example components, unit tests, and a separate FormDatePicker wrapper were all created for what is simply adding a date picker UI component\u2014speculative generality and framework-building for a one-off task.",
+      "cite": "frontend/src/components/Examples/DATE_PICKER_USAGE.md"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A `DatePickerExample` component with a full Zod schema, react-hook-form integration, and form submission handler was created just to demonstrate the date picker\u2014this is a demo wrapper nobody asked for, adding unnecessary abstraction layers around a simple UI component.",
+      "cite": "DatePickerExample (frontend/src/components/Common/DatePickerExample.tsx)"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `DatePickerExample` component file was created just to demonstrate usage of the new `DatePicker` component, which is unnecessary infrastructure for a simple UI component addition.",
+      "cite": "frontend/src/components/ui/date-picker.example.tsx"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "DatePickerExample component adds a full form with zodResolver, useForm, and submit handler just to demonstrate a date picker, which is more structure than needed for a simple UI component addition.",
+      "cite": "DatePickerExample"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "A dedicated `DatePicker` component wrapping a plain `<input type='date'>` with no additional logic beyond styling is slightly more structure than needed\u2014a simple `Input` with `type='date'` would suffice.",
+      "cite": "frontend/src/components/ui/date-picker.tsx"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `DatePicker` component is just a thin wrapper around a native `<input type='date'>` with Tailwind classes\u2014identical in structure to the existing `Input` component\u2014adding a named export for a one-liner that could simply be `<Input type='date' />`.",
+      "cite": "DatePicker component (frontend/src/components/ui/date-picker.tsx)"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `DatePicker` component is just a styled `<input type='date'>` wrapper\u2014identical in structure to the existing `Input` component\u2014yet it gets its own dedicated file, Playwright test file, and is treated as a standalone abstraction.",
+      "cite": "frontend/src/components/ui/date-picker.tsx"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `DatePicker` component is just a thin wrapper around a native `<input type='date'>` with Tailwind classes\u2014identical in structure to the existing `Input` component\u2014adding a named export for a one-liner that could simply be `<Input type='date' />`.",
+      "cite": "DatePicker component in frontend/src/components/ui/date-picker.tsx"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `FileUploadExample` wrapper component was created just to demonstrate usage of `FileDropzone`, adding an unnecessary layer of abstraction for what is essentially a demo/example that could be inline or omitted.",
+      "cite": "FileUploadExample"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "FileUploadExample component wraps the actual FileUpload UI component in a full Dialog with form validation, mutation, and upload logic\u2014none of which was asked for; the task was just to add a dropzone component.",
+      "cite": "FileUploadExample (frontend/src/components/Common/FileUploadExample.tsx)"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `FileUploadDemo` component with three different Card-wrapped Dropzone variants (basic, image-only, PDF-only) was created just to showcase the Dropzone\u2014this demo/showcase layer is unnecessary abstraction for the task of adding a dropzone component.",
+      "cite": "frontend/src/components/FileUpload/FileUploadDemo.tsx"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `FileUploadExample` wrapper component was created just to hold local state and render `FileDropzone`, adding an unnecessary abstraction layer for what is essentially a one-off demo usage.",
+      "cite": "FileUploadExample component in frontend/src/components/FileUploadExample.tsx"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A dedicated `FormDropzone` wrapper component and a separate `dropzone.example.tsx` file were created to handle form integration, adding a full abstraction layer (with generics, forwardRef, and ControllerRenderProps typing) for what is essentially a thin adapter between react-hook-form and the base Dropzone\u2014none of which was asked for.",
+      "cite": "FormDropzone component in `frontend/src/components/ui/form-dropzone.tsx`"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `FileUploadExample` component wrapping the `FileUploadField` in a full Dialog with form validation is unnecessary abstraction for a simple dropzone UI component\u2014it adds a demo/example layer that belongs in docs or tests, not production source.",
+      "cite": "FileUploadExample (frontend/src/components/Common/FileUploadExample.tsx)"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `Dropzone` component uses `React.forwardRef` with a full custom implementation including drag state, hidden input, and button \u2014 reasonable for a reusable component, but the task was just 'add a file upload dropzone' and this builds a mini-framework abstraction in `src/components/ui/dropzone.tsx` that nobody asked for.",
+      "cite": "React.forwardRef wrapping the entire Dropzone component with forwardRef/displayName pattern"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `FileUploadExample` component was created just to demonstrate usage of `FileDropzone`, adding an unnecessary abstraction layer for what is essentially a demo/example that could be inline or omitted.",
+      "cite": "FileUploadExample component (frontend/src/components/FileUploadExample.tsx)"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `Dropzone` component internally manages its own `files` state with add/remove logic, making it a stateful wrapper that owns data the parent likely also needs to manage, creating unnecessary abstraction for what the task asked (a dropzone component).",
+      "cite": "internal `files` state with `setFiles` and `removeFile` inside `Dropzone`"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "Two separate demo/example components (StarRatingDemo and RatingFormExample) were created just to showcase the star rating input, adding speculative infrastructure (Card wrappers, form integration examples, multiple size/state variants) for a component that was simply asked to be added.",
+      "cite": "frontend/src/components/Common/StarRatingDemo.tsx and frontend/src/components/Common/RatingFormExample.tsx"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `StarRating` component includes a full keyboard navigation system (`handleStarKeyDown` with ArrowLeft/ArrowRight/Enter/Space handling), hover state management, configurable `max`, `size` variants with a `sizeMap`, `disabled` state, and ARIA attributes \u2014 all for a simple star rating input that the task just asked to 'add'.",
+      "cite": "`handleStarKeyDown` with full keyboard navigation (ArrowLeft/ArrowRight) in `StarRating`"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `StarRatingExample` component file and a `star-rating.test.tsx` file (with Playwright tests that reference a page that doesn't exist) were added alongside the actual component, adding speculative demo/test infrastructure for a simple UI input widget.",
+      "cite": "frontend/src/components/ui/star-rating.example.tsx"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `StarRating` component adds a `sizeMap` dict and a `size` prop with three variants (sm/default/lg) for a one-off input component that has no known consumers requiring size variation.",
+      "cite": "sizeMap = { sm: 'size-4', default: 'size-5', lg: 'size-6' }"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `StarRatingExample` component file was created just to demonstrate usage, which is unnecessary boilerplate for a simple UI component.",
+      "cite": "frontend/src/components/ui/star-rating.example.tsx"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "A separate `StarRatingField` wrapper component with generic TypeScript types for react-hook-form integration is unnecessary abstraction for a simple star rating input; the `StarRating` component could be used directly in form fields.",
+      "cite": "StarRatingField (frontend/src/components/ui/star-rating-field.tsx)"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `StarRating` component uses `React.forwardRef` and a `data-slot` attribute pattern consistent with the shadcn/ui library style, adding minor structural overhead beyond what a simple star rating input needs.",
+      "cite": "React.forwardRef in StarRating component"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "The `Rating` component uses `forwardRef`, a `sizeVariants` lookup object, `role='radiogroup'`/`role='radio'` ARIA semantics, keyboard navigation with `handleKeyDown`, hover state tracking with `useState`, and a full `RatingProps` interface\u2014all for a simple star input that could be a straightforward functional component with a few mapped buttons.",
+      "cite": "Rating component in `frontend/src/components/ui/rating.tsx`"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 1,
+      "why": "The `StarRating` component accepts `React.ButtonHTMLAttributes<HTMLDivElement>` on a `div` element, which is a minor type mismatch/over-abstraction, but the main slight over-engineering is the `max` prop with a default of 5 and the `hoverValue` state pattern\u2014reasonable for a reusable component, but the task just asked to 'add a star rating input component' with no mention of configurability.",
+      "cite": "max prop with configurable star count and full HTMLDivElement attribute passthrough for a one-off UI component"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "The `FormWizard` component is a generic, configurable, multi-step wizard framework with step indicators, progress bars, navigation, and a full type-generic API\u2014all for a single example form that could have been implemented with simple useState and conditional rendering.",
+      "cite": "FormWizard<T extends Record<string, any>> in frontend/src/components/ui/form-wizard.tsx"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A dedicated `useFormWizardState` hook, a separate `Wizard/index.ts` barrel, two full example components, a spec file, a README, an integration guide, and a `FormWizardContextType` export\u2014all for a multi-step form that could be a single self-contained component with local state.",
+      "cite": "useFormWizardState hook (frontend/src/hooks/useFormWizardState.ts)"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "baseline",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A full multi-step form wizard framework (FormWizard component, WizardStep type, useFormWizard hook, FormWizardExample, FORM_WIZARD_GUIDE.md, Playwright tests for a /wizard route that doesn't exist in the router) was built as a speculative, reusable abstraction for a one-off task\u2014adding a form wizard\u2014complete with generic type parameters, a separate hook, a guide document, and tests for unimplemented routes.",
+      "cite": "FormWizard<T extends FieldValues> generic component + useFormWizard hook + WizardStep type + FormWizardExample + FORM_WIZARD_GUIDE.md"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "A dedicated `MultiStepFormExample` component with a full `FormWizard` UI primitive (including its own types, navigation buttons, step indicator, and exported interfaces) was built as a reusable framework for a one-off example, when the task only asked to add a multi-step form wizard component.",
+      "cite": "frontend/src/components/ui/form-wizard.tsx"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 2,
+      "why": "FormWizardExample is a separate demo/example component that duplicates the wizard logic (step fields, validation, state) already present in FormWizard, adding an unnecessary abstraction layer for what should be a single integrated component.",
+      "cite": "FormWizardExample (frontend/src/components/Common/FormWizardExample.tsx)"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "ponytail",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "The `useFormWizardStep` hook introduces a speculative abstraction (with unused `isValid` state and a `currentStep` parameter that does nothing) on top of react-hook-form's built-in `trigger`, and the `FormWizard` component ships with a full markdown documentation file, a separate `UserRegistrationWizard` example component, and a `FORM_WIZARD.md` doc\u2014all for a one-off multi-step form that could have been implemented inline.",
+      "cite": "useFormWizardStep hook in frontend/src/components/ui/form-wizard.tsx"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "FormWizard is a fully generic, configurable multi-step form framework with its own step schema, validation pipeline, progress tracking, and separate FormWizardExample demo\u2014all for a one-off UI component request that could have been a simple multi-step React component.",
+      "cite": "FormWizard<T extends FieldValues = FieldValues> with WizardStep<T>, FormWizardProps<T>, useMemo schema merging, and FormWizardExample"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "FormWizardExample.tsx is a standalone demo file with its own schema, steps, and step components that exists purely to showcase the wizard\u2014speculative generality with no real use case wired up.",
+      "cite": "frontend/src/components/Common/FormWizardExample.tsx"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "scalpel",
+      "model": "haiku",
+      "over_engineering": 3,
+      "why": "The `FormWizard` component is a generic, fully-abstracted multi-step form framework with typed `WizardStep<T>` generics, field-level validation routing, and a separate `UserOnboardingWizard` example\u2014all for a single use-case that could have been a straightforward stateful component.",
+      "cite": "FormWizard<T extends FieldValues> with WizardStep<T> interface in frontend/src/components/ui/form-wizard.tsx"
+    }
+  ]
+}

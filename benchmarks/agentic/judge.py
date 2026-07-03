@@ -15,7 +15,7 @@ files only (tests excluded -- a test is not over-engineering). Cost is ~$0.003/c
 
 ponytail: stdlib urllib for the API call, no requests dependency.
 """
-import argparse, json, os, re, sys, time, urllib.request
+import argparse, subprocess, json, os, re, sys, time, urllib.request
 from collections import defaultdict
 from pathlib import Path
 
@@ -52,11 +52,20 @@ def _is_test(name):
     return n.startswith("test_") or n.endswith("_test.py") or n == "conftest.py"
 
 def source_text(workdir: Path):
-    """Concatenate the agent's source files (tests + artifacts excluded), with name headers."""
+    """The agent's work, tests/artifacts excluded. Fixture workspaces are a full repo clone,
+    so there we judge the git diff of the agent's changes (concatenating the whole repo
+    blows the prompt and the judge silently nulls out); seeded workspaces concatenate files."""
+    if (workdir / ".git").exists() and (workdir / "_fixture_files.json").exists():
+        try:
+            diff = subprocess.run(["git", "diff", "HEAD", "--", ".", ":!_claude*", ":!*test*"],
+                                  cwd=workdir, capture_output=True, text=True, timeout=60).stdout
+            if diff.strip(): return diff[:180000]
+        except Exception: pass
     out = []
     for p in sorted(workdir.rglob("*")):
         if not p.is_file() or "__pycache__" in p.parts or p.suffix == ".pyc": continue
         if p.name.startswith((".", "_")) or _is_test(p.name): continue
+        if ".git" in p.parts: continue
         try: out.append(f"# === {p.relative_to(workdir)} ===\n{p.read_text(encoding='utf-8', errors='ignore')}")
         except Exception: continue
     return "\n\n".join(out)
@@ -158,7 +167,7 @@ def run(run_dir, key):
         if isinstance(r["over_engineering"], int): by_arm[r["arm"]].append(r["over_engineering"])
     print(f"\n=== over-engineering by arm (judge: {JUDGE_MODEL}, 0=minimal .. 3=over-built) ===")
     print(f"  {'arm':16} {'n':>4} {'mean':>6} {'max':>4}")
-    for arm in ["baseline", "caveman", "ponytail", "yagni", "yagni-oneliner"]:
+    for arm in ["baseline", "caveman", "ponytail", "scalpel", "yagni", "yagni-oneliner"]:
         v = by_arm.get(arm, [])
         if v: print(f"  {arm:16} {len(v):>4} {sum(v)/len(v):>6.2f} {max(v):>4}")
     worst = sorted([r for r in scored if isinstance(r["over_engineering"], int) and r["over_engineering"] >= 2],

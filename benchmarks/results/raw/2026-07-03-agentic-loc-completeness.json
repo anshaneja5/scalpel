@@ -1,0 +1,870 @@
+{
+  "judge": "claude-sonnet-4-6",
+  "rubric": "You are a senior engineer checking whether a code submission ACTUALLY IMPLEMENTS the task it was given. Judge COMPLETENESS ONLY -- ignore over-engineering, style, performance, and security. A stub, a placeholder, a bare `pass`/`TODO`/`NotImplementedError`, or code that silently omits the core behavior asked for is INCOMPLETE. Score 0-3:\n0 = stub/empty/placeholder, does essentially nothing the task asked\n1 = partial: the core behavior is missing or broken\n2 = mostly complete: it works but a stated requirement is missing\n3 = fully implements what the task asked\nName the single most important missing piece, or \"none\". Respond with ONLY this JSON: {\"completeness\": <0-3 int>, \"why\": \"<one line>\", \"missing\": \"<piece or none>\"}",
+  "scores": [
+    {
+      "task": "tmpl-be-archive",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The feature is fully implemented: `is_archived` field added to the Item model and DB migration, `archive_item` and `unarchive_item` CRUD functions, and dedicated POST endpoints `/items/{id}/archive` and `/items/{id}/unarchive` with proper auth checks.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has `is_archived` field on Item model, a migration, and archive/unarchive API endpoints; the frontend has ArchiveItem and UnarchiveItem components, ItemActionsMenu conditionally shows them, and ItemPublic type includes `is_archived`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has archive/unarchive API endpoints, DB migration, model field, and frontend has ArchiveItem component with archive/unarchive mutation, integrated into ItemActionsMenu and columns display.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has archive/unarchive API endpoints (PATCH /{id}/archive and PATCH /{id}/unarchive), the Item model has is_archived field, a DB migration adds the column, and the frontend has ArchiveItem component with archive/unarchive mutations integrated into ItemActionsMenu.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has `is_archived` field on Item model, a migration, and archive/unarchive API endpoints; the frontend client types and SDK include `is_archived` in ItemPublic and ItemUpdate.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has `is_archived` field on Item model, DB migration, archive/unarchive API endpoints, and the frontend has ArchiveItem component, ItemActionsMenu integration, and columns display with Archived badge.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has `is_archived` field on Item model, Alembic migration, `archive_item`/`unarchive_item` CRUD functions, and POST endpoints `/{id}/archive` and `/{id}/unarchive`. The frontend has `ArchiveItem` component, `ItemsService.archiveItem`/`unarchiveItem` calls in sdk.gen.ts, and the action menu includes the archive option.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has archive/unarchive API endpoints, DB migration, model field, and the frontend has ArchiveItem component, columns showing status, and ItemActionsMenu wiring it all together.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-archive",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend has `is_archived` field on the Item model, a DB migration, and two API endpoints (`POST /{id}/archive` and `POST /{id}/unarchive`) that correctly set/unset the flag and return the updated item.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a POST /items/bulk-delete endpoint that accepts a list of UUIDs via ItemsDelete model and deletes multiple items at once, with proper auth checks and error handling.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a `POST /items/delete-batch` endpoint in `items.py` that accepts an `ItemsDelete` model (list of UUIDs), queries and deletes multiple items at once, with proper authorization checks, and the `ItemsDelete` model is defined in `models.py`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a `DELETE /items` endpoint (`delete_items`) that accepts an `ItemsBulkDelete` body with a list of UUIDs, queries for matching items, checks permissions, deletes them all, and returns a count message. The `ItemsBulkDelete` model is defined in models.py.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a `DELETE /items` endpoint accepting an `ItemsDelete` body with a list of UUIDs, validates ownership/permissions, deletes all matching items, and returns a message \u2014 fully implementing bulk deletion.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a `DELETE /api/v1/items` endpoint (`delete_items`) that accepts an `ItemsDelete` body with a list of UUIDs, queries all matching items, checks permissions, deletes them all, and returns a count message. The `ItemsDelete` model is defined in models.py.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a `delete_items` endpoint at `DELETE /items` that accepts an `ItemsDelete` body with a list of UUIDs, iterates over them, checks permissions, deletes each, and returns a success message. The `ItemsDelete` model is defined in models.py. The frontend SDK does not expose this endpoint but the backend implementation is complete.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `POST /items/delete-many` is fully implemented in `backend/app/api/routes/items.py` with the `delete_items` function, the `ItemsDelete` model is defined in `models.py`, and the endpoint correctly accepts a list of UUIDs and deletes matching items with proper permission checks.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `DELETE /items` accepting an `ItemsDelete` body with a list of UUIDs is fully implemented in `backend/app/api/routes/items.py`, the `ItemsDelete` model is defined in `models.py`, and the endpoint iterates over IDs deleting each item with proper permission checks.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-bulkdelete",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The backend implements a `bulk_delete_items` POST endpoint at `/items/bulk-delete` with an `ItemBulkDelete` model (list of UUIDs), proper auth checks, and the model is defined in models.py.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint GET /items/count/ is fully implemented in backend/app/api/routes/items.py with the ItemCount response model, proper authentication, and correct SQL query that filters by owner_id for non-superusers.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count` is fully implemented in `backend/app/api/routes/items.py`, correctly counting items for the current user (or all items for superusers) and returning `{\"count\": <int>}`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count/total` is fully implemented in `backend/app/api/routes/items.py`, correctly querying item count for the current user (or all items for superusers) and returning `{\"count\": int}`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count` is fully implemented in `backend/app/api/routes/items.py`, correctly counting items for the current user (or all items for superusers) and returning the integer count.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count` is fully implemented in `backend/app/api/routes/items.py`, correctly querying item count for the current user (or all items for superusers) and returning `{\"count\": int}`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count` is fully implemented in `backend/app/api/routes/items.py` with a `Count` response model, proper authentication, and correct logic for both superusers and regular users.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, superuser vs regular user logic, a response model (`ItemCount`), and is registered before the other routes.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint GET /items/count is fully implemented in items.py with the ItemCount response model, proper auth, and superuser handling.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-count",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/count` is fully implemented in `backend/app/api/routes/items.py`, correctly querying item count for the current user (or all items for superusers) and returning `{\"count\": count}`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint GET /items/export/csv is fully implemented in backend/app/api/routes/items.py, correctly filtering by owner (or all items for superusers), building a CSV with proper headers, and returning a StreamingResponse with text/csv content type and Content-Disposition header.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 1,
+      "why": "The endpoint is implemented but uses FileResponse incorrectly\u2014it passes an io.BytesIO object as the path argument instead of a file path, which will fail at runtime since FileResponse expects a filesystem path string.",
+      "missing": "Correct response type: should use StreamingResponse or write to a temp file instead of passing BytesIO to FileResponse"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/export/csv` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, CSV generation using Python's csv module, StreamingResponse with correct media type and Content-Disposition header, and only returns the current user's items.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/export/csv` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, CSV generation using Python's csv module, StreamingResponse with correct headers, and handles both superuser (all items) and regular user (own items) cases.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/export/csv` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, CSV generation using Python's csv module, StreamingResponse with correct headers, and handles both superuser (all items) and regular user (own items) cases.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/export/csv` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, CSV generation using the `csv` module, and a `StreamingResponse` with correct headers.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /api/v1/items/export/csv` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, CSV generation using Python's csv module, StreamingResponse with correct headers, and handles both superuser (all items) and regular user (own items) cases.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/export/csv` is fully implemented in `backend/app/api/routes/items.py` with proper authentication, CSV generation using Python's csv module, and StreamingResponse with correct headers.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-csv",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/export/csv` is fully implemented in `backend/app/api/routes/items.py`, returning a StreamingResponse with proper CSV content, authentication, and correct route ordering (before `/{id}`).",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The duplicate_item endpoint is fully implemented in backend/app/api/routes/items.py with proper authentication, permission checks, item lookup, creation of a new Item with copied fields, and returns ItemPublic.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The duplicate_item endpoint is fully implemented in backend/app/api/routes/items.py at POST /{id}/duplicate, with proper auth checks, item lookup, 404/403 handling, and creation of a new item with the same title/description.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The duplicate_item endpoint is fully implemented in backend/app/api/routes/items.py at POST /{id}/duplicate, with proper auth checks, item lookup, 404/403 handling, and returning the new duplicated item.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The duplicate item endpoint is fully implemented in `backend/app/api/routes/items.py` as a POST to `/{id}/duplicate`, with proper auth checks, item lookup, 404/403 handling, and creation of a new item with the same title/description.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `POST /items/{id}/duplicate` is fully implemented in `backend/app/api/routes/items.py`, correctly fetching the item, checking permissions, creating a new Item with the same title/description but a new UUID, and returning the duplicated item.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The duplicate_item endpoint is fully implemented in backend/app/api/routes/items.py at POST /{id}/duplicate, with proper auth checks, item lookup, 404/403 handling, and creation of a new Item with copied fields.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The `duplicate_item` endpoint is fully implemented in `backend/app/api/routes/items.py` at `POST /{id}/duplicate`, with proper auth checks, 404 handling, and creating a new Item with copied fields.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `POST /{id}/duplicate` is fully implemented in `backend/app/api/routes/items.py`, creating a new item with `Copy of {title}` prefix, proper auth checks, DB persistence, and returning the new item.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-duplicate",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The duplicate_item endpoint is fully implemented in backend/app/api/routes/items.py at POST /{id}/duplicate, with proper auth checks, item lookup, 404/403 handling, and returning the new duplicated item.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The search endpoint is fully implemented in backend/app/api/routes/items.py as a GET /items/search route that accepts a query parameter `q`, filters by title using ilike (case-insensitive), respects superuser vs. regular user permissions, supports pagination, and returns ItemsPublic.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/search` is fully implemented in `backend/app/api/routes/items.py` with case-insensitive title matching via `ilike`, proper pagination, superuser vs. owner filtering, and returns `ItemsPublic`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The search endpoint is fully implemented in `backend/app/api/routes/items.py` as a GET `/items/search` route with `q` query parameter, case-insensitive ilike filtering, pagination, and proper superuser/owner access control.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The `/search` endpoint is fully implemented in `backend/app/api/routes/items.py` with case-insensitive title filtering via `ilike`, proper pagination, superuser vs. owner scoping, and correct response model.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/search/by-title` is fully implemented in `backend/app/api/routes/items.py` with case-insensitive title search using `ilike`, proper pagination, and superuser/owner access control.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The endpoint `GET /items/search/title?q=...` is fully implemented in `backend/app/api/routes/items.py` with proper ilike filtering, pagination, superuser/owner scoping, and correct response model.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The search endpoint is fully implemented in backend/app/api/routes/items.py as GET /items/search with a required query parameter `q`, using case-insensitive ilike matching on the title field, with proper superuser/owner filtering, pagination, and returning ItemsPublic.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The search endpoint is fully implemented in `backend/app/api/routes/items.py` as `GET /items/search` with a `q` query parameter, using `ilike` for case-insensitive title matching, respecting superuser vs. regular user permissions, with pagination support.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-be-search",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The `/items/search` endpoint is fully implemented in `backend/app/api/routes/items.py` with case-insensitive title filtering via `ilike`, pagination, and proper superuser/owner access control.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional ColorPicker component is implemented in frontend/src/components/ui/color-picker.tsx with HSL sliders, hex input, color swatch trigger, popover, reset button, and a demo component in ColorPickerDemo.tsx.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A ColorPicker UI component is implemented in `frontend/src/components/ui/color-picker.tsx` with both a color input and hex text input, a demo component in `frontend/src/components/Common/ColorPickerDemo.tsx`, and Playwright tests in `frontend/tests/components/color-picker.spec.ts`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional ColorPicker component is implemented in `frontend/src/components/ui/color-picker.tsx` with default/compact variants, label support, disabled state, ref forwarding, and onChange handling, plus a demo component and unit tests.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A ColorPicker component is fully implemented in `frontend/src/components/ui/color-picker.tsx` as a styled HTML `<input type='color'>` element with proper TypeScript typing, Tailwind CSS classes, and exported correctly.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional ColorPicker component is implemented in `frontend/src/components/ui/color-picker.tsx` as a styled HTML `<input type='color'>` element, plus a demo component in `frontend/src/components/Common/ColorPickerDemo.tsx` showing usage with state management and preview.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional ColorPicker component is implemented in frontend/src/components/ui/color-picker.tsx as a styled HTML color input element with proper TypeScript types, Tailwind CSS styling, and data-slot attribute consistent with the project's component patterns.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully implemented ColorPicker component exists at frontend/src/components/ui/color-picker.tsx as a proper React forwardRef component wrapping an HTML color input with appropriate styling consistent with the project's shadcn/ui design system.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional ColorPicker component is implemented in frontend/src/components/ui/color-picker.tsx as a styled HTML color input with proper Tailwind classes, focus/disabled states, and data-slot attribute consistent with the project's shadcn/ui component patterns.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-colorpicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional ColorPicker component is implemented in frontend/src/components/ui/color-picker.tsx as a styled HTML color input with proper Tailwind classes, data-slot, focus/disabled/invalid states, and exported correctly.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional CommandPalette component is implemented in `frontend/src/components/CommandPalette/CommandPalette.tsx` with search, keyboard navigation (arrows, Enter, Escape), theme toggle, navigation commands, and a `useCommandPalette` hook in `frontend/src/hooks/useCommandPalette.ts` for Ctrl+K/Cmd+K activation.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional CommandPalette component is implemented in `frontend/src/components/CommandPalette/CommandPalette.tsx` with keyboard shortcut (Ctrl/Cmd+K), search filtering, keyboard navigation (arrow keys, Enter, Escape), and navigation commands for all major routes.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A full command palette is implemented: CommandPalette component with fuzzy search, keyboard navigation, Dialog UI, CommandPaletteButton with Ctrl/Cmd+K shortcut, CommandPaletteContext/Provider, useCommandPalette hook, global keyboard listener in RootComponent, and navigation commands for all main routes.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A full command palette component is implemented with CommandPalette.tsx (Dialog with search input, keyboard navigation, Cmd+K shortcut), CommandPaletteContext.tsx (state management), integrated into the app layout, and includes test file and keyboard shortcut hint display.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A full command palette component is implemented in `frontend/src/components/CommandPalette.tsx` with keyboard shortcut (Cmd/Ctrl+K), search filtering, keyboard navigation (arrow keys, Enter, Escape), and a commands definition file at `frontend/src/lib/commands.ts` with navigation commands.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A full CommandPalette component is implemented in frontend/src/components/CommandPalette.tsx with search, keyboard navigation (arrow keys, enter, escape), Ctrl+K shortcut, and navigation to routes; plus a useCommandPalette hook and provider in frontend/src/hooks/useCommandPalette.tsx.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional CommandPalette component is implemented in frontend/src/components/CommandPalette/CommandPalette.tsx with keyboard shortcut (Ctrl/Cmd+K), search filtering, keyboard navigation, and routing to app pages.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The CommandPalette component is fully implemented in frontend/src/components/CommandPalette.tsx with search, keyboard navigation (Ctrl/Cmd+K, arrows, Enter, Escape), command execution, and superuser-conditional admin command.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-command",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional CommandPalette component is implemented in frontend/src/components/CommandPalette/CommandPalette.tsx with keyboard shortcut (Ctrl/Cmd+K), search filtering, keyboard navigation, and navigation/theme/logout commands.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional DatePicker component is implemented in `frontend/src/components/ui/date-picker.tsx`, along with a Calendar component, a custom Popover, an example usage file, documentation, and Playwright tests.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A full DatePicker UI component is implemented in `frontend/src/components/ui/date-picker.tsx` using react-day-picker and Radix UI Popover, a FormDatePicker wrapper for React Hook Form integration is in `form-date-picker.tsx`, a Calendar base component in `calendar.tsx`, example usage files, documentation, and unit tests are all present.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional DatePicker UI component is implemented in `frontend/src/components/ui/date-picker.tsx` using Radix UI Popover + a Calendar component, with proper props (value, onChange, placeholder, disabled), forwardRef support, and it's demonstrated via `DatePickerExample` in `frontend/src/components/Common/DatePickerExample.tsx`. Playwright tests for the component are also included.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional DatePicker component is implemented in frontend/src/components/ui/date-picker.tsx as a styled HTML date input, plus an example usage file date-picker.example.tsx demonstrating its use.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional DatePicker component is implemented in frontend/src/components/ui/date-picker.tsx as a styled HTML date input, and an example usage component is provided in frontend/src/components/Common/DatePickerExample.tsx showing integration with react-hook-form and zod validation.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A complete DatePicker component is implemented in frontend/src/components/ui/date-picker.tsx as a styled HTML date input with proper Tailwind/shadcn styling, exported and ready to use.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A DatePicker component is implemented in frontend/src/components/ui/date-picker.tsx as a styled HTML date input with proper Tailwind/shadcn styling, exported and ready to use.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional DatePicker component is implemented in frontend/src/components/ui/date-picker.tsx as a styled HTML date input, and a Playwright test file frontend/tests/date-picker.spec.ts tests its rendering, value acceptance, and disabled state.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-datepicker",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A DatePicker component is implemented in frontend/src/components/ui/date-picker.tsx as a styled HTML date input with proper Tailwind/shadcn styling, data-slot attribute, and className support.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional FileDropzone component is implemented in frontend/src/components/ui/file-dropzone.tsx with drag-and-drop, file validation, file listing, and removal, plus an example usage component in FileUploadExample.tsx.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional FileUpload dropzone component is implemented in `frontend/src/components/ui/file-upload.tsx` with drag-and-drop, file selection, validation, file listing, and removal, plus an example usage component in `frontend/src/components/Common/FileUploadExample.tsx`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional Dropzone component is implemented in `frontend/src/components/ui/dropzone.tsx` with drag-and-drop, file validation, file listing, and removal, plus a demo component in `frontend/src/components/FileUpload/FileUploadDemo.tsx`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional FileDropzone component is implemented in frontend/src/components/ui/file-dropzone.tsx with drag-and-drop, file validation, accept/maxSize/multiple props, and a usage example in FileUploadExample.tsx.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional `Dropzone` component (`frontend/src/components/ui/dropzone.tsx`) and a form-integrated `FormDropzone` wrapper (`frontend/src/components/ui/form-dropzone.tsx`) are implemented, along with a usage example file (`dropzone.example.tsx`).",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional Dropzone UI component is implemented in `frontend/src/components/ui/dropzone.tsx` with drag-and-drop support, file selection, and visual feedback, plus a `FileUploadField` wrapper in `FileUpload.tsx` and a demo `FileUploadExample.tsx` dialog.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional Dropzone component is implemented in frontend/src/components/ui/dropzone.tsx with drag-and-drop support, file selection via click, accept/multiple/disabled props, and visual feedback for drag state.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional FileDropzone component is implemented in frontend/src/components/ui/file-dropzone.tsx with drag-and-drop support, file validation, file listing with removal, and an example usage component in FileUploadExample.tsx.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-dropzone",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional Dropzone component is implemented in `frontend/src/components/ui/dropzone.tsx` with drag-and-drop support, file selection via click, multiple file handling, file removal, and proper visual feedback.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional StarRating component is implemented in `frontend/src/components/ui/star-rating.tsx` with hover state, click handling, disabled/readOnly modes, size variants, and custom maxStars, plus demo and form integration examples.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully implemented StarRating component exists at frontend/src/components/ui/star-rating.tsx with click, hover, keyboard navigation, disabled state, size variants, and proper ARIA attributes.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A complete StarRating component is implemented in frontend/src/components/ui/star-rating.tsx with full functionality including value/onChange props, hover state, keyboard navigation, size variants, disabled/readonly states, and custom maxValue support.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The file frontend/src/components/ui/star-rating.tsx is present and fully implements a star rating input component with click handlers, hover effects, disabled state, configurable max stars, size variants, and proper accessibility labels.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The star rating input component is fully implemented in `frontend/src/components/ui/star-rating.tsx` with proper props (value, onChange, max, readonly, size), keyboard navigation, hover effects, accessibility attributes, and an example file `star-rating.example.tsx` demonstrating usage.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "Both `frontend/src/components/ui/star-rating.tsx` (the core StarRating component with hover, click, readonly, disabled, size variants) and `frontend/src/components/ui/star-rating-field.tsx` (a react-hook-form Controller wrapper) are fully implemented.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional StarRating component is implemented in frontend/src/components/ui/star-rating.tsx with hover state, click handling, disabled/readonly modes, configurable max stars, and proper accessibility attributes.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional Rating component is implemented in frontend/src/components/ui/rating.tsx with star icons, hover effects, keyboard navigation, accessibility attributes, and configurable props (value, onChange, max, disabled, readOnly, size).",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-rating",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully implemented StarRating component exists at frontend/src/components/ui/star-rating.tsx with hover state, click handling, disabled support, configurable max stars, and proper styling using lucide-react Star icons.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional FormWizard component is implemented in frontend/src/components/ui/form-wizard.tsx with step navigation, progress indicator, field validation before advancing, and a FormWizardExample usage component, plus a test file and Playwright spec.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A complete multi-step form wizard component is implemented in `frontend/src/components/ui/form-wizard.tsx` with all core features: FormWizard context provider, FormWizardHeader, FormWizardSteps progress indicator, FormWizardContent conditional rendering, FormWizardNavigation with prev/next/submit, and useFormWizard hook. Example components, documentation, tests, and a custom hook are also included.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "baseline",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The FormWizard component (FormWizard.tsx), the useFormWizard hook, a complete example (FormWizardExample.tsx), documentation (FORM_WIZARD_GUIDE.md), and Playwright tests (form-wizard.spec.ts) are all fully implemented.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A complete FormWizard UI component is implemented in `frontend/src/components/ui/form-wizard.tsx` with step indicators, navigation buttons, step titles/descriptions, and a full example usage in `frontend/src/components/Examples/MultiStepFormExample.tsx` demonstrating multi-step form with validation.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The submission fully implements a multi-step form wizard component: `FormWizard.tsx` (the reusable wizard component with step indicators, navigation buttons, and step content rendering) and `FormWizardExample.tsx` (a working 3-step example with per-step validation using react-hook-form and zod).",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "ponytail",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "The submission fully implements a multi-step form wizard: a reusable `FormWizard` component with tab navigation, step validation via `useFormWizardStep` hook, a complete `UserRegistrationWizard` example with 3 steps and per-step validation, documentation in `FORM_WIZARD.md`, and Playwright e2e tests in `frontend/e2e/form-wizard.spec.ts`.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional multi-step form wizard component (FormWizard) is implemented in frontend/src/components/Common/FormWizard.tsx with step navigation, progress bar, per-step validation via zod schemas, and an example usage file (FormWizardExample.tsx).",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional multi-step form wizard component (FormWizard) is implemented in frontend/src/components/Common/FormWizard.tsx with context, navigation, step indicators, and a working example usage in FormWizardExample.tsx and AddItemWizard.tsx.",
+      "missing": "none"
+    },
+    {
+      "task": "tmpl-fe-wizard",
+      "arm": "scalpel",
+      "model": "haiku",
+      "completeness": 3,
+      "why": "A fully functional FormWizard component is implemented in `frontend/src/components/ui/form-wizard.tsx` with step navigation, progress indicator, per-step validation, and a complete example usage in `frontend/src/components/Examples/UserOnboardingWizard.tsx`.",
+      "missing": "none"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "scalpel",
+  "description": "The surgeon skill: plans the minimal change once, cuts precisely, never severs an artery. Smallest diff that heals — validation, error handling, security and accessibility are anatomy, not fat.",
+  "version": "0.1.0",
+  "author": { "name": "Ansh Aneja" },
+  "license": "MIT"
+}

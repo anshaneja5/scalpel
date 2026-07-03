@@ -1,0 +1,31 @@
+# Cheap iteration loop: Haiku only, scalpel vs ponytail vs baseline.
+# Run: npx promptfoo@latest eval -c benchmarks/promptfooconfig.iterate.yaml --repeat 3
+description: "Iteration: scalpel vs ponytail vs baseline on Haiku only."
+
+providers:
+  - id: anthropic:messages:claude-haiku-4-5-20251001
+    config: { max_tokens: 8192, temperature: 1 }
+
+prompts:
+  - id: file://arms/baseline.js
+    label: baseline (no skill)
+  - id: file://arms/ponytail.js
+    label: ponytail
+  - id: file://arms/scalpel.js
+    label: scalpel
+
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://loc.js
+      metric: code_loc
+    - type: javascript
+      value: file://correctness.js
+      metric: correct
+
+tests:
+  - vars: { task: "Write me a Python function that validates email addresses." }
+  - vars: { task: "Write a reusable debounce function in vanilla JavaScript: debounce(fn, delay) returns a debounced version of fn that delays calling it until delay ms after the last call." }
+  - vars: { task: "Write Python code that reads sales.csv and sums the 'amount' column." }
+  - vars: { task: "Build me a countdown timer component in React that counts down from a given number of seconds." }
+  - vars: { task: "Add rate limiting to my FastAPI endpoint so users can't spam it." }
